@@ -13,14 +13,14 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
   function __construct(&$formValues) {
     $this->_formValues = $formValues;
 
-    $this->_columns = array(
+    $this->_columns = [
       ts('Contact Id') => 'contact_id',
       ts('First') => 'first_name',
       ts('Last') => 'last_name',
       ts('Email') => 'email',
       ts('Phone') => 'phone',
       ts('Postcode') => 'postcode',
-    );
+    ];
     parent::__construct($formValues);
   }
 
@@ -36,7 +36,7 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
     /**
      * Define the search form fields here
      */
-    $spam_options = array(
+    $spam_options = [
       '1' => ts('First name equals last name'),
       '2' => ts('Names contain numbers'),
       // '3' => ts('Questionable email addresses'),
@@ -48,11 +48,11 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
       '9' => ts('Long or short Phone Number'),
       '10' => ts('Unexpected Punctuation in Name'),
 
-    );
+    ];
     $form->addRadio('spam_options',
       ts('Search options'),
       $spam_options,
-      array(),
+      [],
       '<br />',
       TRUE
     );
@@ -70,7 +70,7 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
     );
 
     // Date for records added since
-    $form->addDate('start_date', ts('Contact records added since'), FALSE, array('formatType' => 'custom'));
+    $form->addDate('start_date', ts('Contact records added since'), FALSE, ['formatType' => 'custom']);
 
     // Filter on Minimum Contact ID
     $form->add('text',
@@ -89,14 +89,14 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
      * If you are using the sample template, this array tells the template fields to render
      * for the search form.
      */
-    $form->assign('elements', array(
+    $form->assign('elements', [
       // 'spam_options', 'phone_length', 'postcode_length', 'start_date',
       'spam_options',
       'min_contact_id',
       'blank_names',
       'min_length',
       'max_length',
-    ));
+    ]);
   }
 
   /**
@@ -174,7 +174,7 @@ class CRM_Customsearches_Form_Search_agSpam extends CRM_Contact_Form_Search_Cust
    *
    */
   function where($includeContactIDs = FALSE) {
-    $clauses = array();
+    $clauses = [];
 
     $clauses [] = '(not contact_a.is_deleted)';
     if ($this->_aclWhere) {
@@ -258,7 +258,7 @@ END_SQL;
 
 
     if ($includeContactIDs) {
-      $contactIDs = array();
+      $contactIDs = [];
       foreach ($this->_formValues as $id => $value) {
         if ($value &&
           substr($id, 0, CRM_Core_Form::CB_PREFIX_LEN) == CRM_Core_Form::CB_PREFIX
