@@ -3,17 +3,17 @@
 // The record will be automatically inserted, updated, or deleted from the
 // database as appropriate. For more details, see "hook_civicrm_managed" at:
 // http://wiki.civicrm.org/confluence/display/CRMDOC42/Hook+Reference
-return array (
+return [
   0 =>
-  array (
+  [
     'name' => 'CRM_Customsearches_Form_Search_addressFixNeeded',
     'entity' => 'CustomSearch',
     'params' =>
-    array (
+    [
       'version' => 3,
       'label' => 'addressFixNeeded',
       'description' => 'Addresses needing attention',
       'class_name' => 'CRM_Customsearches_Form_Search_addressFixNeeded',
-    ),
-  ),
-);
+    ],
+  ],
+];

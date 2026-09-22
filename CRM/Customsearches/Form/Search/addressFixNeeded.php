@@ -16,11 +16,11 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
     $this->_formValues = $formValues;
 
 
-    $this->_columns = array(
+    $this->_columns = [
       ts('Contact Id') => 'contact_id',
       ts('Display Name') => 'display_name',
       ts('Address1') => 'address1',
-    );
+    ];
   }
 
   /**
@@ -33,7 +33,7 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
     /**
      * Define the search form fields here
      */
-    $search_types = array(
+    $search_types = [
       //'1' => 'Multiple billing addresses for a contact',
       '2' => 'Street address missing a number',
       '3'=> 'Has street address and postcode, but not city',
@@ -44,11 +44,11 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
       '8' => 'Country is missing, or is one that is often entered incorrectly',
       '9' => 'State does not match Country',
       '10'=> 'Street Address contains "NCA" (NCA addresses are hidden from other searches)',
-    );
+    ];
     $form->addRadio('search_type',
       ts('Search options'),
       $search_types,
-      array(),
+      [],
       '<br />',
       TRUE
     );
@@ -63,9 +63,9 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
      * If you are using the sample template, this array tells the template fields to render
      * for the search form.
      */
-    $form->assign('elements', array(
+    $form->assign('elements', [
       'search_type', 'min_contact_id',
-    ));
+    ]);
   }
 
   /**
@@ -180,7 +180,7 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
    * @return string, sql fragment with conditional expressions
    */
   function where($includeContactIDs = FALSE) {
-    $clauses = array();
+    $clauses = [];
 
     $clauses []= '(not contact.is_deleted)';
 
@@ -244,7 +244,7 @@ class CRM_Customsearches_Form_Search_addressFixNeeded extends CRM_Contact_Form_S
     }
 
     if ($includeContactIDs) {
-      $contactIDs = array();
+      $contactIDs = [];
       foreach ($this->_formValues as $id => $value) {
         if ($value &&
           substr($id, 0, CRM_Core_Form::CB_PREFIX_LEN) == CRM_Core_Form::CB_PREFIX
